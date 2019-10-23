@@ -1,0 +1,184 @@
+section.apply{
+  height:100%;
+  width: 1500px;
+  margin: 0 auto;
+}
+section.apply .apply-form{
+  position:relative;
+  background-color: #ffffff;
+  width: 1200px;
+  padding: 60px 100px;
+  margin: 0 auto;
+  margin-top: 70px;
+  border-radius: 20px;
+}
+.apply-form .step-indicator{
+  right:5%;
+  position:absolute;
+  top:-20px;
+  text-align:center;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid #00b2b2;
+  color: #ffffff;
+  background-color: #00b2b2;
+  cursor: pointer;
+}
+.apply-form .step-indicator-text{
+  position: relative;
+  top: 15%;
+}
+.apply h3{
+  color:rgba(0,0,0,.54);
+}
+article.select-form{
+  width:750px;
+  margin: 100px auto;
+}
+
+.select-title{
+  float: left;
+}
+.select-box{
+  position:relative;
+  top:1vw;
+  margin-left:60%;
+}
+.gender-select{
+  text-align:center;
+  cursor:pointer;
+  border: 1px solid #007bff;
+  border-radius: 10px;
+  width: 4vw;
+  padding: 5px 10px;
+  color: #ffffff;
+  background-color: #007bff;
+  margin-right: 40px;
+  margin-left: -10px;
+  display:inline-block;
+  transition: all 0.6s;
+  font-size: 25px;
+}
+.gender-select:hover{
+  outline: none;
+  background-color:#6f42c1;
+  width: 5vw;
+  transition: all 0.6s;
+}
+.select-form .apply-input{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 25%;
+  padding: 20px;
+}
+article.pattern-container{
+  width: 750px;
+  margin: 100px auto;
+}
+article.pattern-container .pattern-box{
+  margin-top: 50px;
+  display: -ms-flexbox;
+  -ms-flexbox-wrap;
+  -ms-flexbox-direction:column;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  display: -webkit-box;
+  display: flex;
+}
+article.pattern-container .pattern-box div {
+  text-align: center;
+  -webkit-box-flex: auto;
+  -ms-flex: auto;
+  flex: auto;
+  display:table;
+  margin: .5vw;
+}
+article.pattern-container .pattern-box div div{
+  margin: 30px auto;
+}
+article.pattern-container .pattern-box div img{
+  cursor: pointer;
+  width: 120px;
+  height: auto;
+  transition: all 0.6s;
+}
+article.pattern-container .pattern-box div img:hover{
+  width: 150px;
+  height: auto;
+  transition: all 0.6s;
+}
+.article .pattern-box
+article.apply-form .btn-success{
+  position:relative;
+  right: 10%;
+  width: 120px;
+  padding: 10px;
+  border-radius:10px;
+  float: right;
+}
+
+#male, #female{
+  width: 0px;
+  height: 0px;
+  display:hidden;
+}
+#pattern1, #pattern2, #pattern3, #pattern4{
+  width:0px;
+  height:0px;
+
+}
+/*  apply2 */
+.diet-title{
+  float: initial;
+  margin-bottom: 100px;
+}
+.diet-box{
+  width: 500px;
+  margin-left: initial;
+  margin: 0 auto;
+}
+.period-box{
+  display:inline-block;
+}
+.period-badge{
+  opacity: 0;
+  top:14vw;
+  width: 20vw;
+  position:absolute;
+  z-index: 4;
+  background-color:#ffc107;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.6s;
+}
+#long-box{
+  margin-left: 100px;
+}
+.period-label{
+  display: table;
+  position:relative;
+}
+
+.period-label:focus{
+  outline:none;
+}
+#short, #long{
+  width: 0px;
+  height: 0px;
+  display:hidden;
+}
+.period-label img{
+  cursor:pointer;
+  width: 9vw;
+  transition: all 0.6s;
+}
+.period-label img:active, .period-label img:hover{
+  width: 11vw;
+  transition: all 0.6s;
+}
+.period-description{
+  margin-top: 40px;
+  text-align:center;
+}

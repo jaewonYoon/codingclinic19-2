@@ -1,0 +1,109 @@
+section.mypage{
+  color:#565a5c;
+  height: 500px;
+}
+
+article.profile{
+  padding: 200px;
+  text-align:left;
+  width:1500px;
+  margin: 0 auto;
+}
+article.profile .profile-title{
+  margin-bottom: 40px;
+  margin-left: 10px;
+}
+.profile-img{
+  cursor:pointer;
+  float:left;
+  display: block;
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  transition: 0.25s ease-in-out;
+  background: no-repeat 50%/cover border-box;
+}
+.profile-list{
+  display: inline-block;
+  font-size:30px;
+  font-weight:400;
+  margin-left:40px;
+}
+.profile-cover{
+  cursor:pointer;
+  opacity:0;
+  top:99px;
+  background-color:#4A4A4A;
+  position:absolute;
+  width:200px;
+  height:100px;
+  border-bottom-left-radius:400px;
+  border-bottom-right-radius:400px;
+  transition: all 0.3s ease-in-out;
+}
+.profile-img-box{
+  float:left;
+  display:table;
+  position:relative;
+}
+.profile #uploadPhoto{
+  opacity: 0;
+  width: 0;
+  max-height: 0;
+  position:absolute;
+}
+.profile-cover .fa-camera{
+  margin-left:63px;
+  width:80px;
+  height:80px;
+}
+.profile-list ul{
+  list-style:none;
+}
+.profile-list ul li{
+  font-weight:700;
+  margin: 20px;
+}
+.mypage-text{
+  font-size: 20px;
+  font-weight:500;
+  height:400px;
+  width:1200px;
+  padding: 60px 100px;
+  margin: 0 auto;
+  background-color:#ffffff;
+  border-radius:20px;
+}
+.mypage-text input{
+  border-radius:10px;
+}
+.mypage table{
+  border-collapse: separate;
+  border-spacing: 0 30px;
+}
+.mypage .alert{
+  bottom: 4%;
+  position: absolute;
+  right: 46%;
+}
+.mypage .position{
+  display: inline-block;
+}
+table td.left{
+  width: 50%;
+}
+table td.right{
+  padding-left:10vw;
+}
+.mypage .editBtn-box{
+  margin-top: 40px;
+  text-align:right;
+}
+.mypage .btn-primary.editBtn{
+  cursor:pointer;
+  display:inline-block;
+  border-radius:10px;
+  text-align:center;
+  width: 150px;
+  padding: 10px 20px;
+}

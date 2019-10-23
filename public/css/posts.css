@@ -1,0 +1,43 @@
+
+.information{
+  padding: 200px;
+  text-align: left;
+  width: 1500px;
+  margin: 0 auto;
+}
+.information table{
+  text-align: center;
+  width: 100%;
+  border-spacing: initial;
+}
+.information thead tr{
+  height:50px;
+}
+.information tbody tr{
+  transition: all 0.3s;
+  font-weight: 300;
+  font-size:15px;
+  height: 50px;
+  cursor: pointer;
+}
+.information tbody tr:hover{
+  transition: all 0.3s;
+  height: 60px;
+  font-weight:500;
+}
+.information tbody tr:nth-child(2n+1){
+  background-color:#f0c6c6;
+}
+.information tr:not(:first-child){
+  margin:0;
+  padding:40px;
+}
+.paging{
+  display:table;
+  margin:40px auto;
+}
+.paging span{
+  cursor:pointer;
+  border: 1px solid #000000;
+  padding: 10px;
+}
