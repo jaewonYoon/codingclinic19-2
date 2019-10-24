@@ -1,10 +1,10 @@
 {
   "name": "clinic",
   "version": "1.0.0",
-  "description": "",
+  "description": ">You can check my site below url:\r [Healer](http://bunggl.dothome.co.kr/cc/index.php)",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,7 +12,17 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^1.7.0",
     "nodemon": "^1.19.4",
     "pug": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaewonYoon/codingclinic19-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jaewonYoon/codingclinic19-2/issues"
+  },
+  "homepage": "https://github.com/jaewonYoon/codingclinic19-2#readme"
 }

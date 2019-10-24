@@ -1,0 +1,50 @@
+extends ../includes/header.pug
+block contents
+    script.
+        $(document).ready(function(){
+            removeModal();
+        });
+        function checkForm(){
+            const id = document.querySelector('#id');
+            const password = document.querySelector('#password');
+            const checkList = [id, password]
+            for(const item of checkList){
+                if(item.value.length === 0){
+                alert('빈칸이 있으면 안됩니당~');
+                $(item).focus;
+                return false;
+                }
+            }
+            fetchUser('login','/user/signIn', id.value,password.value);
+            }
+            function revealModal(){
+            const find = $('.healer-modal');
+            find.css('max-height','400px').css('opacity',1);
+            }
+            function removeModal(){
+            const find = $('.healer-modal');
+            $(document).click(function(e){
+                if(!document.querySelector('.healer-modal').contains(e.target) && e.target!=$('.forget')[0] ){
+                find.css('max-height','0px').css('opacity','0');
+            }
+            });
+        }
+    section.login-section
+        .login-form
+            form(action="/user/signIn" method="POST")
+                .id 아이디
+                input#id(name="id", placeholder="아이디" required)
+                .password 비밀번호
+                input#password(name="password", placeholder="비밀번호" required)
+                .alert.medium#loginAlert(style="color:red", alt="로그인 경고 메세지")
+            .btn-box
+                .btn-primary(type="submit" onClick="checkForm()") 로그인
+                .btn-green(onclick="location.href='/'") 회원가입
+            .forget(onclick="revealModal()") 저런! 혹시 비밀번호를 잊어버리셨나요?
+        .healer-modal
+            .text-box
+                .id 아이디를 입력해주세요.
+                input#findId(name="findId", placeholder="아이디")
+                .email 이메일을 입력해주세요
+                input#findEmail(name="findEmail", placeholder="이메일")
+                .btn-primary 비밀번호 찾기

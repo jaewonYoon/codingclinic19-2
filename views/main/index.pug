@@ -1,5 +1,11 @@
 extends ../includes/header.pug
 block contents
+    script.
+        $(document).ready(function(){
+            init();
+            carousel();
+            randomImage();
+        })
     section
         #carouselList.carousel.slide.carousel-fade(data-ride="carousel")
             .carousel-inner
@@ -49,10 +55,10 @@ block contents
                             div (버전 2.0 출시예정)
             a.carousel-control-prev(href="#carouselList", role="button", data-slide="prev")
                 span.carousel-control-prev-icon(aria-hidden="true")
-                span Previous
-            a.carousel-control-prev(href="#carouselList", role="button", data-slide="prev")
+                span 
+            a.carousel-control-next(href="#carouselList", role="button", data-slide="prev")
                 span.carousel-control-next-icon(aria-hidden="true")
-                span Next
+                span 
     section.dividen-sec
         .dividen    
             section.left
@@ -64,15 +70,15 @@ block contents
                             .description 몸의 노폐물을 싹~ 저지방 우유 레몬 다이어트 
                     .way-card
                             article.way2
-                                span.way-back(style="background-image:url(/cc/img/dummy-way.jpg)")
+                                span.way-back(style="background-image:url(/img/dummy-way.jpg)")
                                 .description 이 세상 다이어트가 아니다. 김수미 다이어트
                     .way-card
                             article.way3
-                                span.way-back(style="background-image:url(/cc/img/health2.jpg)")
+                                span.way-back(style="background-image:url(/img/health2.jpg)")
                                 .description 화식과 생식의 차이를 알아보자
                     .way-card
                             article.way4
-                                span.way-back(style="background-image:url(/cc/img/health3.jpg)")
+                                span.way-back(style="background-image:url(/img/health3.jpg)")
                                 .description 일상생활 속의 칼로리 소모 공식, 좋은 습관으로 올 겨울을 건강하게!
                     .way-card
                             article.way5
@@ -88,27 +94,27 @@ block contents
                         .item
                             span.number.bold 1 
                             .content.regular D-30, 묻고 더블로 빼자 곽철용님 
-                            span.profile-img(style="background-image: url(/cc/img/dummy/profile1.jpg)")
+                            span.profile-img(style="background-image: url(/img/dummy/profile1.jpg)")
                         .item
                             span.number.bold 2 
                             .content.regular D-7, 10kg 감량 무지님
-                            span.profile-img(style="background-image: url(/cc/img/dummy/profile2.jpg)")
+                            span.profile-img(style="background-image: url(/img/dummy/profile2.jpg)")
                         .item
                             span.number.bold 3 
                             .content.regular D-5, 성실도 98% 콘님 
-                            span.profile-img(style="background-image: url(/cc/img/dummy/profile3.jpg)")
+                            span.profile-img(style="background-image: url(/img/dummy/profile3.jpg)")
                         .item
                             span.number.bold 4
                             .content.regular D-20, 14kg 감량 박프로님 
-                            span.profile-img(style="background-image: url(/cc/img/dummy/profile4.jpg)")
+                            span.profile-img(style="background-image: url(/img/dummy/profile4.jpg)")
                         .item
                             span.number.bold 5 
                             .content.regular D-1, 체지방 5% 감량 김포프님 
-                            span.profile-img(style="background-image: url(/cc/img/dummy/profile5.jpg)")
+                            span.profile-img(style="background-image: url(/img/dummy/profile5.jpg)")
     section
         .pack-box
             .bold 주목하세요! 여러분을 힐링해줄 힐러팩
             .img-box
                 img(src="/img/goods/healer_pack.png" alt="healer pack image")
                 .btn-primary.disable 살펴보기
-                                     
+    
