@@ -4,6 +4,7 @@
   "description": ">You can check my site below url:\r [Healer](http://bunggl.dothome.co.kr/cc/index.php)",
   "main": "index.js",
   "scripts": {
+    "start" : "nodemon app.js",
     "dev": "nodemon app.js"
   },
   "author": "",
