@@ -67,8 +67,8 @@ function fetchUser(type, url, id,password,password_ck="",email=""){
     },
     success: function(data){
       if(data=='login'){ // 로그인 성공
-        console.log(data);
-        window.location.href="/cc/index.php";
+        console.log('...');
+        window.location.href="/";
       }else if(data =='duplicate'){
         $('#idAlert').text('이미 존재하는 아이디입니다.');
       }
@@ -80,7 +80,7 @@ function fetchUser(type, url, id,password,password_ck="",email=""){
       }else if(data == 'nouser'){ //그 외 예외 상황
         console.log('해당 아이디의 유저가 존재하지 않습니다.');
       }else{
-        console.log(data);
+        console.log("....");
       }
     }
   })
