@@ -1,0 +1,60 @@
+extends ../includes/header.pug
+block contents
+    script.
+        $(document).ready(function(){
+            signInit();
+        });
+        function signInit(){
+            const pwInput = document.querySelector('#password');
+            const pwCkInput = document.querySelector('#password_ck');
+            const emailInput = document.querySelector('#email');
+            const alert = document.querySelector('#pwdAlert');
+            const alert2 = document.querySelector('#pwdChkAlert');
+            const alert3 = document.querySelector('#emailAlert');
+            typing(pwInput,pwCkInput,emailInput,alert,alert2,alert3);
+        }
+        function checkForm(){
+            const id = document.querySelector('#id');
+            const password = document.querySelector('#password');
+            const password_ck = document.querySelector('#password_ck');
+            const email = document.querySelector('#email');
+            const check_blank = [id, password,password_ck, email];
+            // 아이디 유효성 검사
+            if(id.value.length < 5){
+                alert('아이디는 5글자 이상이어야 합니다.');
+                return false;
+            }
+            //비밀번호, 아이디 적었는지 확인s
+            for(const item of check_blank){
+                if(item.value.length === 0){
+                    alert('빈칸이 있으면 안됩니당~');
+                    $(item).focus;
+                    return false;
+                }
+            }
+            //비밀번호 유효성 확인
+            if(pwdChkValid(password.value,password_ck.value)&& pwdValid(password.value)&& emailValid(email.value)){
+                fetchUser('signup', '/cc/pages/check_signup.php',id.value,password.value,password_ck.value,email.value);
+            }else{
+                alert('폼을 알맞게 작성해주세요.');
+                return false;
+            }
+        }
+    section.login-section
+        .login-form
+            form(method="POST")
+                .id 아이디 
+                input#id(name="id", placeholder="아이디", required)
+                .alert.medium#idAlert(style="color:red", alt="비밀번호 유효성 경고메세지")
+                .password 비밀번호
+                input#password(name="password", placeholder="비밀번호", required)
+                .alert.medium#pwdAlert(style="color:red", alt="비밀번호 유효성 경고메세지")
+                .password_ck 비밀번호 확인
+                input#password_ck(name="password_ck", placeholder="비밀번호 확인", required)
+                .alert.medium#pwdChkAlert(style="color:red", alt="비밀번호 확인 유효성 경고메세지")
+                .email 이메일 
+                input#email(name="email", placeholder="이메일", required)
+                .alert.medium#emailAlert(style="color:red", alt="이메일 유효성 경고메세지")
+            .btn-box
+                .btn-green(onclick="checkForm();") 회원가입 
+                

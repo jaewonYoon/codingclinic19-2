@@ -16,11 +16,11 @@ module.exports = class User{
     }
 
     static fetchAll(){
-        return db.execute('SELECT * FROM user');
+        return db.db.execute('SELECT * FROM user');
     }
 
     static fetchUser(userId){
-        return db.execute(`SELECT * FROM user where userId ='${userId}'`);
+        return db.db.execute(`SELECT * FROM user where userId ='${userId}'`);
     }
 }
 

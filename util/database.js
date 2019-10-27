@@ -7,4 +7,13 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD
 });
 
-module.exports = pool.promise();
+module.exports = {
+   db :pool.promise(),
+   config : {
+       host: process.env.DB_HOST,
+       user: process.env.DB_USER,
+       database: process.env.DB_DATABASE,
+       password: process.env.DB_PASSWORD
+   }
+}
+

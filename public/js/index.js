@@ -99,7 +99,7 @@ function fetchFile(type,url,file){
   });
 }
 function logout(){
-  window.location.href="/cc/pages/logout.php";
+  window.location.href="/user/signOut";
 }
 
 function revealCover(wow,oh){
@@ -113,7 +113,8 @@ function revealCover(wow,oh){
 
 function randomImage(){
   const result = Math.floor(Math.random() * 3) + 1;
-  const url = "/cc/img/loading/"+result+".png";
+  const url = "/img/loading/"+result+".png";
+  console.log(url); 
   $('.loader img')[0].src = url;
 }
 

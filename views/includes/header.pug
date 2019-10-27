@@ -21,6 +21,12 @@ html(lang="en")
         script(src="https://code.jquery.com/jquery-3.2.1.min.js")
         block styles
     body
+        script.
+            $(document).ready(function(){
+                init();
+                randomImage();
+            }); 
+        include ./loader.pug
         include ./navigation.pug
         block contents
         include ./footer.pug

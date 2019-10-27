@@ -4,8 +4,12 @@ const userController = require('../controllers/user');
 
 const router = express.Router();
 
-//user/login => GET
+//user/signIn => GET
 router.get('/signIn', userController.getSignIn); 
-//user/login => POST
+//user/signIn => POST
 router.post('/signIn', userController.postSignIn);
 module.exports = router;
+// user/signOut => GET 
+router.get('/signOut', userController.getSignOut); 
+// user/signUp => GET
+router.get('/signUp', userController.getSignUp);
