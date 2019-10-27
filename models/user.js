@@ -14,13 +14,19 @@ module.exports = class User{
     save() {
 
     }
-
+    static createUser(userId,password,email,nickname){
+        return db.db.execute(`INSERT INTO user(userId,password,email,nickname) values 
+         ('${userId}','${password}','${email}','${nickname}')`);
+    }
     static fetchAll(){
         return db.db.execute('SELECT * FROM user');
     }
 
     static fetchUser(userId){
         return db.db.execute(`SELECT * FROM user where userId ='${userId}'`);
+    }
+    static fetchNick(nick){
+        return db.db.execute(`SELECT count(*) as count FROM user where nickname='${nick}';`);
     }
 }
 

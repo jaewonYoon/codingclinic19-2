@@ -8,17 +8,20 @@ block contents
             const pwInput = document.querySelector('#password');
             const pwCkInput = document.querySelector('#password_ck');
             const emailInput = document.querySelector('#email');
+            const nickInput = document.querySelector('#nick');
             const alert = document.querySelector('#pwdAlert');
             const alert2 = document.querySelector('#pwdChkAlert');
             const alert3 = document.querySelector('#emailAlert');
-            typing(pwInput,pwCkInput,emailInput,alert,alert2,alert3);
+            const alert4 = document.querySelector('#nickAlert'); 
+            typing(pwInput,pwCkInput,emailInput,nickInput,alert,alert2,alert3,alert4);
         }
         function checkForm(){
             const id = document.querySelector('#id');
             const password = document.querySelector('#password');
             const password_ck = document.querySelector('#password_ck');
             const email = document.querySelector('#email');
-            const check_blank = [id, password,password_ck, email];
+            const nick = document.querySelector('#nick'); 
+            const check_blank = [id, password,password_ck, email,nick];
             // 아이디 유효성 검사
             if(id.value.length < 5){
                 alert('아이디는 5글자 이상이어야 합니다.');
@@ -34,7 +37,7 @@ block contents
             }
             //비밀번호 유효성 확인
             if(pwdChkValid(password.value,password_ck.value)&& pwdValid(password.value)&& emailValid(email.value)){
-                fetchUser('signup', '/cc/pages/check_signup.php',id.value,password.value,password_ck.value,email.value);
+                fetchUser('signup', '/user/signup',id.value,password.value,password_ck.value,email.value,nick.value);
             }else{
                 alert('폼을 알맞게 작성해주세요.');
                 return false;
@@ -47,14 +50,17 @@ block contents
                 input#id(name="id", placeholder="아이디", required)
                 .alert.medium#idAlert(style="color:red", alt="비밀번호 유효성 경고메세지")
                 .password 비밀번호
-                input#password(name="password", placeholder="비밀번호", required)
+                input#password(type="password", name="password", placeholder="비밀번호", required)
                 .alert.medium#pwdAlert(style="color:red", alt="비밀번호 유효성 경고메세지")
                 .password_ck 비밀번호 확인
-                input#password_ck(name="password_ck", placeholder="비밀번호 확인", required)
+                input#password_ck(type="password", name="password_ck", placeholder="비밀번호 확인", required)
                 .alert.medium#pwdChkAlert(style="color:red", alt="비밀번호 확인 유효성 경고메세지")
                 .email 이메일 
                 input#email(name="email", placeholder="이메일", required)
                 .alert.medium#emailAlert(style="color:red", alt="이메일 유효성 경고메세지")
+                .nick 닉네임 
+                input#nick(name="nick", placeholder="닉네임", required)
+                .alert.medium#nickAlert(style="color:red", alt="닉네임 유효성 경고메세지")
             .btn-box
                 .btn-green(onclick="checkForm();") 회원가입 
                 

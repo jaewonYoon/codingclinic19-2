@@ -54,7 +54,7 @@ exports.getSignOut = (req,res,next) => {
     }
 }
 
-// 회원가입
+// 회원가입 페이지
 exports.getSignUp = (req,res,next) => {
     let userId;
     if(req.session){
@@ -65,4 +65,26 @@ exports.getSignUp = (req,res,next) => {
         return false;
     }
     res.render('user/signUp');
+}
+// 회원가입 
+exports.postSignUp = (req,res,next) => {
+    const {id, password, email, nick} = req.body; 
+    User.fetchUser(id).
+        then((rows,fieldData) => {
+            if(rows[0].length){
+                res.send('duplicate')
+            }
+        });
+    User.fetchNick(nick).
+        then(([rows,fieldData]) => {
+            console.log(rows[0].count)
+            if(rows[0].count){
+                res.send('duplicate_nick');
+            }
+        })
+        .catch( error => console.error(error)); 
+    User.createUser(id,bcrypt.makePassword(password),email,nick)
+        .then(() => {
+            res.send("thankyou");
+        })
 }

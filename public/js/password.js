@@ -1,4 +1,4 @@
-function typing(pwInput,pwCkInput,emailInput,alert,alert2,alert3){
+function typing(pwInput,pwCkInput,emailInput,nickInput, alert,alert2,alert3, alert4){
   pwInput.onkeyup = function(){
     const pw = pwInput.value;
     if(!pwdValid(pw)){
@@ -23,6 +23,13 @@ function typing(pwInput,pwCkInput,emailInput,alert,alert2,alert3){
       alert3.innerText='올바른 이메일 형식으로 적어주세요.';
     }else{
       alert3.innerText='';
+    }
+  }
+
+  nickInput.onkeyup = function(){
+    const nick = nickInput.value;
+    if(nick.length <2 && nick.length > 10){
+      alert4.innerText='닉네임은 2~10자 이내 이어야 합니다.';
     }
   }
 }

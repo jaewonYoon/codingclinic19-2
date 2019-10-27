@@ -46,7 +46,7 @@ function packHover(){
   });
 }
 
-function fetchUser(type, url, id,password,password_ck="",email=""){
+function fetchUser(type, url, id,password,password_ck="",email="",nick=""){
   $.ajax({
     url:url,
     method:"POST",
@@ -55,7 +55,8 @@ function fetchUser(type, url, id,password,password_ck="",email=""){
       id:id,
       password: password,
       password_ck: password_ck,
-      email:email
+      email:email,
+      nick:nick
     },
     beforeSend:function(){
       $('.loader').css('display','block');
@@ -71,6 +72,10 @@ function fetchUser(type, url, id,password,password_ck="",email=""){
         window.location.href="/";
       }else if(data =='duplicate'){
         $('#idAlert').text('이미 존재하는 아이디입니다.');
+        $('#nickAlert').text('');
+      }else if(data =='duplicate_nick'){
+        $('#nickAlert').text('이미 존재하는 닉네임입니다.');
+        $('#idAlert').text('');
       }
       else if(data =='thankyou'){ //회원가입 성공
         window.location.href="/cc/pages/thankyou.php";
