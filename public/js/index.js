@@ -78,14 +78,14 @@ function fetchUser(type, url, id,password,password_ck="",email="",nick=""){
         $('#idAlert').text('');
       }
       else if(data =='thankyou'){ //회원가입 성공
-        window.location.href="/cc/pages/thankyou.php";
+        window.location.href="/";
       }else if(data =='wrongpd'){ //비밀번호 틀림
         $('#loginAlert').text('아이디 혹은 비밀번호가 정확하지 않습니다.');
         console.log('Ajax fail');
       }else if(data == 'nouser'){ //그 외 예외 상황
         console.log('해당 아이디의 유저가 존재하지 않습니다.');
       }else{
-        console.log("....");
+        console.log("그 이외의 상황");
       }
     }
   })

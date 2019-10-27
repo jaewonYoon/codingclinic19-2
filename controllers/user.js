@@ -18,6 +18,7 @@ exports.postSignIn = (req,res,next) => {
            if(bcrypt.checkPassword(password, rows[0].password)){
                 console.log('로그인 성공')
                 req.session.userId = rows[0].userId;
+                req.session.nick = rows[0].nickname;
                 req.session.save( () => {
                     res.send('login');
                 }); 
@@ -87,4 +88,10 @@ exports.postSignUp = (req,res,next) => {
         .then(() => {
             res.send("thankyou");
         })
+}
+
+exports.getMyPage = (req,res,next) => {
+    res.render('user/myPage',{
+        session: req.session
+    });
 }

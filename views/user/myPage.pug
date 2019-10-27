@@ -1,0 +1,62 @@
+extends ../includes/header.pug
+block contents
+    script.
+        $(document).ready(function(){
+            cover();
+            photoEdit();
+        });
+        function cover(){
+            target= $('.profile-img');
+            cover=$('.profile-cover');
+            revealCover(target,cover);
+            revealCover(cover,cover);
+        }
+        function mypage_formCheck(){
+            const pw = $('#changePd')[0].value;
+            const pw_ck = $('#changePdCk')[0].value;
+            const alert = $('#pwdAlert');
+            if(!pwdValid(pw)){
+            alert.text('10글자이상, 특수기호 대문자 혹은 소문자가 들어가야 합니다.');
+            return false;
+            } else{
+            alert.text('');
+            if(!pwdChkValid(pw,pw_ck)){
+                alert.text('비밀번호가 서로 일치하지 않습니다.');
+            }else{
+                alert.text('');
+                const id = document.querySelector('.id').value;
+                const email = document.querySelector('.email').value;
+
+                passwordEdit(pw, pw_ck);
+                }
+            }
+        }
+    section.mypage
+        article.profile
+            h3.profile-title 프로필 정보설정 
+            .profile-img-box
+                span.profile-img(style="background-image:url(#{image})")
+                input#uploadPhoto(type="file")
+                .profile-cover()
+                    i.fas.fa-camera
+            .profile-list
+                ul
+                    li #{session.nick}님, 
+                    li.position 반갑습니다!  
+    section.mypage
+        article.mypage-text
+            table
+                tr
+                    td.left 이메일주소 
+                    td.right.email some email address
+                tr
+                    td.left 비밀번호 변경
+                    td.right 
+                        input#changePd(type="password" name="changePd", placeholder="비밀번호 수정")
+                tr
+                    td.left 비밀번호 변경확인
+                    td.right 
+                        input#changePdCk(type="password" name="changePdCk", placeholder="비밀번호 확인")
+            .alert.medium#pwdAlert(style="color:red", alt="비밀번호 유효성 경고메세지")
+            .editBtn-box
+                .btn-primary.editBtn(onclick="mypage_formCheck()") 수정완료
