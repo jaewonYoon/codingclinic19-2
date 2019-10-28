@@ -1,6 +1,6 @@
 const bcrypt = require('../util/bcrypt');
+const split = require( '../util/split');
 const User = require('../models/user');
-
 //signIn 
 exports.getSignIn = (req,res,next) => {
     if(req.session.userId){
@@ -99,7 +99,9 @@ exports.getMyPage = (req,res,next) => {
             .then(([rows,dataField]) => {
                 if(rows[0].Image){
                     image = rows[0].Image;
-                    image = image.replace('publicimages','/images/')
+                    image = '/images/'+ image;
+                    // image = split.transUrl('publicimages', image, '/images/');
+                    // image = image.replace('publicimages','/images/')
                     res.render('user/myPage',{
                         session: req.session,
                         image :image
@@ -122,8 +124,9 @@ exports.postMyImage = (req,res,next) => {
     if(!image){
         res.send('type_error'); 
     }
+    // const imageUrl = split.transUrl('publicimages', image.path, '/images');
 
-    User.createImage(req.session.userId, image.path)
+    User.createImage(req.session.userId, image.filename)
         .then(() => {
             User.fetchImage(req.session.userId)
             .then(([rows,dataField]) => {

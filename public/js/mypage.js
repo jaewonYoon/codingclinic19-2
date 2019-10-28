@@ -55,7 +55,7 @@ function photoEdit(){
         } else if(data === 'size_error'){
           console.log('파일 사이즈는 2mb 미만이어야 합니다.');
         }else{
-          data = data.replace('publicimages', '/images/');
+          data = '/images/'+data; 
           console.log(data);
           $('.profile-img').css('background-image',`url(${data})`);
         }
