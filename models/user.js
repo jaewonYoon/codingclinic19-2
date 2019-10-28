@@ -28,5 +28,11 @@ module.exports = class User{
     static fetchNick(nick){
         return db.db.execute(`SELECT count(*) as count FROM user where nickname='${nick}';`);
     }
+    static createImage(userId,imageUrl){
+        return db.db.execute(`update user set Image='${imageUrl}' where userId='${userId}'`);
+    }
+    static fetchImage(userId){
+        return db.db.execute(`SELECT Image from user where userId='${userId}' `);
+    }
 }
 

@@ -35,9 +35,10 @@ block contents
         article.profile
             h3.profile-title 프로필 정보설정 
             .profile-img-box
-                span.profile-img(style="background-image:url(#{image})")
-                input#uploadPhoto(type="file")
-                .profile-cover()
+                span.profile-img(style='background-image:url('+ image+')',
+                onclick="$('#uploadPhoto').click()")
+                input#uploadPhoto(type="file", name="image")
+                .profile-cover(onclick="$('#uploadPhoto').click()")
                     i.fas.fa-camera
             .profile-list
                 ul
@@ -52,7 +53,7 @@ block contents
                 tr
                     td.left 비밀번호 변경
                     td.right 
-                        input#changePd(type="password" name="changePd", placeholder="비밀번호 수정")
+                        input#changePd(type="password" name="password", placeholder="비밀번호 수정")
                 tr
                     td.left 비밀번호 변경확인
                     td.right 
@@ -60,3 +61,4 @@ block contents
             .alert.medium#pwdAlert(style="color:red", alt="비밀번호 유효성 경고메세지")
             .editBtn-box
                 .btn-primary.editBtn(onclick="mypage_formCheck()") 수정완료
+    script(src="/js/mypage.js")

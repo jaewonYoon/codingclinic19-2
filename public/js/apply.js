@@ -32,11 +32,8 @@ function validate(){
       weight: weight,
       gender: gender,
       activity: activity,
-<<<<<<< HEAD
       bmr: bmr,
       kcal: kcal
-=======
->>>>>>> 05c72517f7670dabb3a806ad140fc57e08b7eeb8
     },
     beforeSend:function(){
       $('.loader').css('display','block');

@@ -89,9 +89,51 @@ exports.postSignUp = (req,res,next) => {
             res.send("thankyou");
         })
 }
-
+// /user/mypage => get
 exports.getMyPage = (req,res,next) => {
-    res.render('user/myPage',{
-        session: req.session
-    });
+    var image;
+    if(!req.session.userId){
+        res.redirect('/');
+    } else{ 
+        User.fetchImage(req.session.userId)
+            .then(([rows,dataField]) => {
+                if(rows[0].Image){
+                    image = rows[0].Image;
+                    image = image.replace('publicimages','/images/')
+                    res.render('user/myPage',{
+                        session: req.session,
+                        image :image
+                    });
+                }else{
+                    res.render('user/myPage',{
+                        session:req.session,
+                        image: `/images/default/profile.jpg` 
+                    })
+                }
+                
+            })
+       
+    }
+    
+}
+// /user/mypage/changeImage => post 
+exports.postMyImage = (req,res,next) => { 
+    const image= req.file; 
+    if(!image){
+        res.send('type_error'); 
+    }
+
+    User.createImage(req.session.userId, image.path)
+        .then(() => {
+            User.fetchImage(req.session.userId)
+            .then(([rows,dataField]) => {
+                let url = rows[0].Image;
+                res.send(url);
+            })
+        })
+        .catch((err) => console.error(err)); 
+}
+
+exports.postMyPassword = (req,res,next) => {
+    res.send('success');
 }

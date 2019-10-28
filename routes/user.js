@@ -8,7 +8,6 @@ const router = express.Router();
 router.get('/signIn', userController.getSignIn); 
 //user/signIn => POST
 router.post('/signIn', userController.postSignIn);
-module.exports = router;
 // user/signOut => GET 
 router.get('/signOut', userController.getSignOut); 
 // user/signUp => GET
@@ -17,3 +16,7 @@ router.get('/signUp', userController.getSignUp);
 router.post('/signUp', userController.postSignUp);
 // user/mypage => GET
 router.get('/mypage', userController.getMyPage);
+// user/mypage => POST
+router.post('/mypage/changeImage', userController.postMyImage);
+router.post('/mypage/changePassword', userController.postMyPassword);
+module.exports = router;
