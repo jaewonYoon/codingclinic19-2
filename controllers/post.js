@@ -1,4 +1,6 @@
 const User = require('../models/user'); 
+const Post = require('../models/post');
+const build = require('../util/buildtag');
 
 //timeline
 exports.getTimeline = (req,res,next) => {
@@ -29,5 +31,29 @@ exports.getTimeline = (req,res,next) => {
         .catch(error => {
             console.error(error);
         }); 
-        
+}
+exports.getPosts = (req,res,next) => {
+    if(!req.session.userId) {
+        res.redirect('/');
+        return false;
+    }
+    let limit = req.body.limit;
+    let start = req.body.start;
+    // get contents from table posts
+    Post.getPosts(limit,start)
+        .then(([rows,data]) => {
+            console.log(rows);
+            rows = build.timeline(rows);
+            let buildData = '' 
+            rows.forEach((item) => {
+                buildData += item;
+            });
+            res.send(rows.length 
+                ? buildData 
+                : 'nodata');   
+        })
+        .catch( error => {
+            console.error(error)
+        });
+
 }

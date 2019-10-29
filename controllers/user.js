@@ -24,7 +24,7 @@ exports.postSignIn = (req,res,next) => {
                 }); 
             } else {
                 console.log('비밀번호가 틀렸습니다.'); 
-                return false;
+                res.send('wrongpd');
             }
         })
         .catch( err => {

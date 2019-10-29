@@ -22,7 +22,7 @@ $(window).scroll(function(){
 function load_timeline(limit,start){
   console.log(limit,start);
   $.ajax({
-    url:"/post/timeline",
+    url:"/post/timeline/getposts",
     method: "POST",
     data: {
       limit:limit,
@@ -39,14 +39,12 @@ function load_timeline(limit,start){
     },
     success:function(data)
     {
-      $('#load_data').append(data);
-      if(data == ''){
-          $('#load_data_message').html("새 글이 없습니다. 새로운 피드를 남겨보시는건 어떤가요?");
-          action = 'active';
-      }else{
-          $('#load_data_message').html("Loading...");
-          action = "inactive";
+      if(data == 'nodata') {
+        $('#load_data_mesage').html("아직 작성 글이 없습니다. 새로운 피드를 작성해 보세요.");
+      } else{
+        $('#load_data').append(data);
       }
+      
     }
   })
 };
