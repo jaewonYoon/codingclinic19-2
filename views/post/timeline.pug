@@ -1,0 +1,20 @@
+extends ../includes/header.pug
+block contents
+    script.
+        $(document).ready(function(){
+            $('textarea.card').on('input',function(){
+                $(this.css('height',this.scrollHeight + 'px'))
+            })
+        });
+    section.timeline
+        .card-container
+            .card-name
+                h5.medium 게시물 작성하기 
+            .card-box
+                span.profile-img(style="background-image:url("+image+")")
+                textarea.card(placeholder=""+userId+"님 지금 무슨 생각을 하고 있나요?")
+        .workbench
+    section.timeline
+        #load_data
+        #load_data_message
+    //- script(src="/js/timeline.js")   

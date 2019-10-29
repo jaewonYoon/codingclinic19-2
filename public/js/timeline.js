@@ -22,7 +22,7 @@ $(window).scroll(function(){
 function load_timeline(limit,start){
   console.log(limit,start);
   $.ajax({
-    url:"/cc/include/check_timeline.php",
+    url:"/post/timeline",
     method: "POST",
     data: {
       limit:limit,

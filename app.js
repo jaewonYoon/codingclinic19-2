@@ -50,9 +50,10 @@ app.use(session({
 // router 가져오기 
 const mainRoutes = require('./routes/main'); 
 const userRoutes = require('./routes/user');
-
+const postRoutes = require('./routes/post');
 app.use('/', mainRoutes);
 app.use('/user', userRoutes);
+app.use('/post', postRoutes);
 
 const errorController = require('./controllers/error');
 app.use('/', errorController.get404);
