@@ -12,15 +12,17 @@ $(window).scroll(function(){
     console.log('moving');
     action = 'active';
     start = start+ limit;
+    console.log(action);
+    console.log(limit,start);
+
     setTimeout(function(){
       load_timeline(limit,start);
     },1000);
   }else{
     console.log('false');
   }
-})
+});
 function load_timeline(limit,start){
-  console.log(limit,start);
   $.ajax({
     url:"/post/timeline/getposts",
     method: "POST",
@@ -43,10 +45,11 @@ function load_timeline(limit,start){
         $('#load_data_mesage').html("아직 작성 글이 없습니다. 새로운 피드를 작성해 보세요.");
       } else{
         $('#load_data').append(data);
+        action = 'inactive';
       }
-      
     }
   })
 };
 
-});
+})
+
