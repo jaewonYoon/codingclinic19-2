@@ -4,7 +4,10 @@ const mainController = require('../controllers/main');
 
 const router = express.Router();
 
-//main/index => GET 
+//  => GET 
 router.get('/',mainController.getIndex);
+// info => GET
+router.get('/info',mainController.getInfo);
+
 
 module.exports = router;

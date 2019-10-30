@@ -523,10 +523,10 @@ section.info{
   border-radius:15px;
 }
 .info-box .text-box{
-    height:400px;
     display:table;
-    padding: 40px 100px;
+    padding: 50px 100px 50px 20px;
     font-size: 20px;
+    margin: 75px 0;
     top:initial;
     left: initial;
     z-index: initial;
@@ -566,6 +566,7 @@ section.video .logo-box img{
 .introduction .google, .introduction .app{
   cursor: pointer;
   margin-right: 20px;
+  margin-left: 20px;
   width: 200px;
 }
 section.empty-space{
@@ -582,13 +583,12 @@ section.empty-space{
   border-right: 1px solid #D3D3D3
 }
 .blood .text-box{
-  height:400px;
+  height:250px;
 }
 .blood video{
-    margin-left: 20px;
-    width: 720px;
-    height: 400px;
-    border-radius: 20px;
+  margin: 100px 200px;
+  height: 250px;
+  border-radius: 40px;
 }
 section.info.social{
   background-color:#ffffff !important;
@@ -600,7 +600,7 @@ section.info.social .text-box{
   float:left;
   margin-right: 0px;
   width: 800px;
-  height: 400px;
+  height: 450px;
   border-radius:20px;
 }
 
@@ -622,7 +622,7 @@ section.timeline .card-name h5{
   top:15%;
 }
 section.timeline .card-container{
-  height:200px;
+  height:250px;
   margin:10px auto;
   width:40%;
   background-color: #ffffff;
@@ -637,12 +637,26 @@ section.timeline .card-box .profile-img{
   width:80px;
   height:80px;
 }
+section.timeline .card-box .icon-box{
+  padding: 0 30px;
+}
+section.timeline .card-box .likes_counts{
+  float:right; 
+  margin-right: 10px;
+}
+section.timeline .card-box i{
+  margin-left: 20px;
+  cursor:pointer;
+  float:right;
+  transition: all 0.6s; 
+}
+
 section.timeline .card{
   width:80%;
   resize:none;
   overflow: none;
   min-height:60%;
-  margin:20px 0px;
+  margin: 20px 0px 15px;
   position:relative;
 }
 section.timeline #load_data{

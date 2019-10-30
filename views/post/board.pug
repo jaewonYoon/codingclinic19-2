@@ -1,0 +1,17 @@
+extends ../includes/header.pug
+block contents
+    section.mypage
+        article.imformation
+            table
+                thead
+                    tr.table-head
+                        th.table-id(scope="col", width="10%") No
+                        th(scope="col", width="60%") 제목 
+                        th(scope="col", width="20%") 작성자
+                        th(scope="col", width="10%") 작성시간 
+                tbody
+            .paging
+                span &lt; 이전
+                 
+                span 다음 &gt;  
+                    

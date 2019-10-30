@@ -8,3 +8,6 @@ exports.getIndex =(req,res,next) => {
         session: user
     })
 }
+exports.getInfo = (req,res,next) => {
+    res.render('main/info');
+}

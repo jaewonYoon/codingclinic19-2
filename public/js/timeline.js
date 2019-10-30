@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 var limit  = 5;
 var start = 0;
 var action = 'inactive';
@@ -9,17 +8,12 @@ if(action =='inactive'){
 }
 $(window).scroll(function(){
   if($(window).scrollTop() + $(window).height() > $("#load_data").height() && action == 'inactive'){
-    console.log('moving');
     action = 'active';
     start = start+ limit;
-    console.log(action);
-    console.log(limit,start);
 
     setTimeout(function(){
       load_timeline(limit,start);
     },1000);
-  }else{
-    console.log('false');
   }
 });
 function load_timeline(limit,start){
@@ -52,4 +46,31 @@ function load_timeline(limit,start){
 };
 
 })
+function likeClick(e){
+    let liked = false;
+    console.log(e.target);
+    postId = e.target.classList[0];
+    if(e.target.classList.contains('far')){ 
+        // 아직 좋아요를 누르지 않았을 때 
+        $(e.target).removeClass('far').addClass('fas');
+        likes(postId,'add');
+    }else{
+      $(e.target).removeClass('fas').addClass('far');
+      likes(postId,'minus');
+    }
+} 
 
+// 타임라인 likes 표시 관련 
+const likes = function(postId,type){
+  $.ajax({
+    method: 'POST',
+    url: '/post/timeline/likepost',
+    data: {
+      postId: postId.split("@")[1],
+      type: type
+    },
+    success:function(data){
+      console.log('success');
+    }
+  })
+}

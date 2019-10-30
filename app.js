@@ -54,7 +54,6 @@ const postRoutes = require('./routes/post');
 app.use('/', mainRoutes);
 app.use('/user', userRoutes);
 app.use('/post', postRoutes);
-
 const errorController = require('./controllers/error');
 app.use('/', errorController.get404);
 

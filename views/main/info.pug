@@ -1,0 +1,43 @@
+extends ../includes/header.pug
+block contents
+    section.video
+        video#myVideo(autoplay, muted, loop)
+            source(src="/video/walking.mp4")
+        .introduction
+            .logo-box
+                img(src="/img/healer.png")
+            .google-box
+                img.google(src="/img/google_w.png")
+            .app-box
+                img.app(src="/img/app_w.png")
+    section.empty-space
+    section.info(style="background-color:#ffffff")
+        .info-box
+            .img-box
+                img.fadein(src="/img/goods/healer_sign.png")
+            .text-box
+                .bold 안녕하세요? 건강 페이스메이커, 힐러입니다
+                .medium 하루하루 내 모습을 기록하고 더 나아진 내일을 기대해보세요.  
+                .medium 바쁜 일상 속의 놓칠 수 있는 칼로리 소모, 힐러가 눈으로 보여드리겠습니다.
+                .medium 힐러의 케어를 받으시고 여러분의 가장 중요한 자산을 쌓아가세요.
+    //- #f8f9fa
+    section.info.blood(style="background-color:")
+        .info-box
+            .text-box(style="color:#ffffff")
+                .bold(style="color:#ffffff") 비만의 원인 지방세포! 줄어들지 않는다구요?
+                .medium 힐러와 함께 체질 개선을 경험해보세요.
+                .medium 근육세포와 기초대사량을 늘릴 수 있어요.
+                .medium 하루 목표량을 달성하고 살 찌지 않는 체질이 되어보세요.
+            .video-box
+                video#myVideo(autoplay,muted,loop)
+                    source(src="/video/blood.mov")
+    section.info.social
+        .info-box
+            video#myVideo(autoplay,muted,loop)
+                source(src="/video/social.mp4")
+            .text-box
+                .bold 힐러는 여러분의 성공을 응원합니다div
+                .medium 여러분의 지난 데이터를 공유하고 
+                .medium 다른 플레이어들에게 동기부여를 해주세요.
+                .medium 플레이어 분들이 힘을 낼 수 있도록 힐러 포인트를 드려요.
+                .medium 하트비트를 모아 힐러팩을 지급받고 계속 나아가세요. 
