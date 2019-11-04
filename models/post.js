@@ -10,7 +10,7 @@ module.exports = class Post{
       from posts as post
       join
       user as user 
-      on post.userId = user.userId
+      on post.userId = user.userId 
       order by postId
       DESC LIMIT ${start}, ${limit}
       `);

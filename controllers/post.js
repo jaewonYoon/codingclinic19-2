@@ -30,6 +30,7 @@ exports.getTimeline = (req,res,next) => {
             console.error(error);
         }); 
 }
+//timeline.js 에서 포스트 불러올때 post로 가져 옴 
 exports.getPosts = (req,res,next) => {
     if(!req.session.userId) {
         res.redirect('/');
@@ -38,35 +39,42 @@ exports.getPosts = (req,res,next) => {
     let limit = req.body.limit;
     let start = req.body.start;
     // get contents from table posts
+    let new_item =[];
     Post.getPosts(limit,start)
         .then(([rows,data]) => {
-                rows.forEach((item) => {
-                Post.checkLikePost(item.postId,req.session.userId)
-                    .then(([row, dataField]) => {
-                        if(row.length){
-                            item.alreadyLiked = 1;
-                        }else item.alreadyLiked = 0;
-                        console.log('1111111');
-                        return item
-                    })
-                    .then(([row,dataField]) =>{
-                        console.log('222222');
-                        
-                    })
-                    .catch((error)=>console.error(error))       
-            })
-            return rows;
-        })
-        .then(rows => {
-            console.log(rows) 
-            rows = build.timeline(rows);
-            let buildData = '' 
-            rows.forEach((item) => {
-                buildData += item;
+                // rows.forEach((item) => {
+                // Post.checkLikePost(item.postId,req.session.userId)
+                //     .then(([row, dataField]) => {
+                //         console.log(row);
+                //     })
+                    // .then(new_item => {
+                    //     console.log.apply('=====>>',new_item);
+                    //     new_item = build.timeline(new_item);
+                    //     let buildData = '' 
+                    //     rows.forEach((item) => {
+                    //         buildData += item;
+                    //     });
+                    //     res.send(rows.length 
+                    //         ? buildData 
+                    //         : 'nodata');   
+                    // })
+                    // .catch((error)=>console.error(error))       
+            rows.forEach( async (item) => {
+                await Post.checkLikePost(item.postId, req.session.userId)
+                .then(([row,dataField]) => {
+                    if(row.length){
+                       item.alreadyLiked = 1;
+                       new_item.push(item); 
+                    }
+                    else new_item.push(item);
+                }).then()
             });
-            res.send(rows.length 
-                ? buildData 
-                : 'nodata');   
+            console.log('new_item', new_item);
+            buildData = build.timeline(rows);
+            return buildData;
+        })
+        .then((data) => {
+            Post.checkLikePost(item.postId)
         })
         .catch( error => {
             console.error(error)
