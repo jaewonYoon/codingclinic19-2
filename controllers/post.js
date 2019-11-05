@@ -41,6 +41,7 @@ exports.getPosts = (req,res,next) => {
     // get contents from table posts
     Post.getPosts(limit,start)
         .then(([rows,data]) => {
+                console.log(rows);
                 let new_item = []; 
                 rows.forEach((item) => {
                     new_item.push( 
@@ -77,7 +78,6 @@ exports.likePost = (req,res,next) => {
     userId = req.session.userId; 
     postId = req.body.postId;
     type =req.body.type
-    console.log(type);
     if(type === 'add'){
         Post.checkLikePost(postId,userId)
         .then(([rows,dataField]) => {

@@ -44,7 +44,7 @@ function load_timeline(limit,start){
     }
   })
 };
-
+uploadImg(); 
 })
 function likeClick(e){
     let liked = false;
@@ -77,4 +77,27 @@ const likes = function(postId,type){
       console.log('success');
     }
   })
+}
+
+
+//포스팅 이미지 업로드 
+
+  
+
+const uploadImg= function() {
+  $('#imgInp').on('change',function(){
+    $('#imgUp').css('display','initial');
+    readURL(this);
+  })
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader(); 
+
+      reader.onload = function(e) {
+        $('#imgUp').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]); 
+    }
+  }
 }

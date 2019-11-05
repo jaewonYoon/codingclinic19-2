@@ -11,10 +11,12 @@ block contents
             .card-name
                 h5.medium 게시물 작성하기 
             .card-box
+                input#imgInp(type="file")
+                img#imgUp 
                 span.profile-img(style="background-image:url("+image+")")
                 textarea.card(placeholder=""+userId+"님 지금 무슨 생각을 하고 있나요?")
                 .icon-box
-                    i.fas.fa-camera.fa-2x
+                    i.fas.fa-camera.fa-2x(onclick="$('#imgInp').click();")
 
                     
         .workbench
