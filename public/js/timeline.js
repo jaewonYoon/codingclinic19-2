@@ -44,7 +44,7 @@ function load_timeline(limit,start){
     }
   })
 };
-
+uploadImg(); 
 })
 function likeClick(e){
     let liked = false;
@@ -53,10 +53,13 @@ function likeClick(e){
     if(e.target.classList.contains('far')){ 
         // 아직 좋아요를 누르지 않았을 때 
         $(e.target).removeClass('far').addClass('fas');
-        console.log($(e.target).closest('.icon-box').find('.like_counts')); 
+        let like_counts = $(e.target).next().text();
+        $(e.target).next().text(parseInt(like_counts)+1);
         likes(postId,'add');
     }else{
       $(e.target).removeClass('fas').addClass('far');
+      let like_counts = $(e.target).next().text();
+      $(e.target).next().text(parseInt(like_counts)-1);
       likes(postId,'minus');
     }
 } 
@@ -72,6 +75,60 @@ const likes = function(postId,type){
     },
     success:function(data){
       console.log('success');
+    }
+  })
+}
+
+
+//포스팅 이미지 업로드 
+
+  
+
+const uploadImg= function() {
+  $('#imgInp').on('change',function(){
+    $('#imgUp').css('display','initial');
+    readURL(this);
+  })
+  function readURL(input) {
+    if(input.files && input.files[0]){
+      var reader = new FileReader(); 
+
+      reader.onload = function(e) {
+        $('#imgUp').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]); 
+    }
+  }
+}
+
+const writePost = function(){
+  let files = $('#imgInp')[0].files[0];
+  let data = new FormData(); 
+  // data.append('postImage', files);
+  data.append('image', files);
+  data.append('posts', $('#postInput').text());
+  $.ajax({
+    method: "POST",
+    url: '/post/timeline/writepost',
+    enctype: 'multipart/form-data',
+    data:data,
+    processData: false,
+    contentType: false, 
+    beforeSend: function() {
+      $('.loader').css('display', 'block');
+      $('.loader-cover').css('display','block');
+    },
+    complete: function(){
+      $('.loader').css('display','none');
+      $('.loader-cover').css('display','none');
+    },
+    success: function(data){
+      if(data == 'success'){
+        location.href='/post/timeline'
+      }else{
+        console.log(data)
+      }
     }
   })
 }

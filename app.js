@@ -23,7 +23,14 @@ const storage = multer.diskStorage({
         cb(null, new Date().toISOString().replace(/:/gi,'-') + file.originalname);
     } 
 });
-
+const storage2 = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images/posts');
+    },
+    filename: (req,file,cb) => {
+        cb(null, new Date().toISOString().replace(/:/gi,'-') + file.originalname);
+    }
+})
 const fileFilter = (req,file, cb) => {
     if(
         file.mimeType==='image/png' || 
@@ -36,9 +43,11 @@ const fileFilter = (req,file, cb) => {
     }
 }
 // {storage: fileStorage,fileFilter: fileFilter}
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+// setting mypage image destination 
 app.use(multer({storage}).single('image'));
-
+// setting timeline image destination 
+app.use(multer({storage2}).single('postImage'));
 app.use(express.static(path.join(__dirname,'public')));
 // 세션 암호화 값 설정 
 app.use(session({

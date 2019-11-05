@@ -7,16 +7,17 @@ exports.timeline = (data,alreadyLiked) => {
                 </div>
                 <div class="card-box">
                     <span class="profile-img" style="background-image:url('/images/${data.Image}');"></span>
+                    ${data.image ? `<img src="/images/${data.image}">` : ""} 
                     <textarea class="card" readonly="readonly" disabled>${data.posts}</textarea>
                     <div class="icon-box">
                         <i class="@${data.postId} ${data.alreadyLiked ?'fas ': 'far '}fa-heart fa-2x" 
                                 onclick="likeClick(event)"
                             />
                         ${data.likes_counts? '<div class="likes_counts">'+ data.likes_counts+'</div>': ''} 
-                        
                     </div>
                 </div>
             </div>
         `
     })
+    
 }

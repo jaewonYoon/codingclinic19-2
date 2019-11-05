@@ -71,13 +71,24 @@ exports.getBoard = (req,res,next) => {
 exports.getBoardPosts = (req,res,next) => {
 }
 exports.writePost = (req,res,next)=> {
+    const image= req.file.filename;
+    console.log('req json', JSON.parse(req.body));
+    const userId = req.session.userId;
+    const posts = req.body.posts;
+    console.log(JSON.stringify(req.body));
+    Post.writePost(userId,image, posts, 'write')
+        .then(res.send('success'))
+        .catch(err => console.error(err));
+    if(!image){
+        res.send('type_error'); 
+    }
 
 }
+
 exports.likePost = (req,res,next) => {
     userId = req.session.userId; 
     postId = req.body.postId;
     type =req.body.type
-    console.log(type);
     if(type === 'add'){
         Post.checkLikePost(postId,userId)
         .then(([rows,dataField]) => {
@@ -86,7 +97,6 @@ exports.likePost = (req,res,next) => {
                     .then(() => {
                         Post.editLikeCount(postId,type)
                             .then(([rows,dataField]) => {
-                                console.log(rows);
                                 res.send(rows.likes_counts);
                             })
                     })
@@ -100,7 +110,6 @@ exports.likePost = (req,res,next) => {
             .then(()=>{
                 Post.editLikeCount(postId,type)
                     .then(([rows,dataField]) => {
-                        console.log(rows);
                         res.send(rows.likes_counts);
                     })
             })

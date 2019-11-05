@@ -2,20 +2,22 @@ extends ../includes/header.pug
 block contents
     script.
         $(document).ready(function(){
-            $('textarea.card').on('input',function(){
-                $(this.css('height',this.scrollHeight + 'px'))
-            })
+            //- $('textarea.card').on('input',function(){
+            //-     $(this.css('height',this.scrollHeight + 'px'))
+            //- })
         });
     section.timeline
         .card-container
             .card-name
                 h5.medium 게시물 작성하기 
             .card-box
+                input#imgInp(type="file", name="image")
+                img#imgUp 
                 span.profile-img(style="background-image:url("+image+")")
-                textarea.card(placeholder=""+userId+"님 지금 무슨 생각을 하고 있나요?")
+                textarea.card#postInput(placeholder=""+userId+"님 지금 무슨 생각을 하고 있나요?")
                 .icon-box
-                    i.fas.fa-camera.fa-2x
-
+                    i.fas.fa-camera.fa-2x(onclick="$('#imgInp').click();")
+                    div#postBtn(onclick="writePost();") 게시 
                     
         .workbench
     section.timeline
