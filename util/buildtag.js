@@ -9,7 +9,7 @@ exports.timeline = (data,alreadyLiked) => {
                     <span class="profile-img" style="background-image:url('/images/${data.Image}');"></span>
                     <textarea class="card" readonly="readonly" disabled>${data.posts}</textarea>
                     <div class="icon-box">
-                        <i class="@${data.postId} ${data.alreadyLiked ?'fas': 'far '}fa-heart fa-2x" 
+                        <i class="@${data.postId} ${data.alreadyLiked ?'fas ': 'far '}fa-heart fa-2x" 
                                 onclick="likeClick(event)"
                             />
                         ${data.likes_counts? '<div class="likes_counts">'+ data.likes_counts+'</div>': ''} 

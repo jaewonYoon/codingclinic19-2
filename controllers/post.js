@@ -39,43 +39,27 @@ exports.getPosts = (req,res,next) => {
     let limit = req.body.limit;
     let start = req.body.start;
     // get contents from table posts
-    let new_item =[];
     Post.getPosts(limit,start)
         .then(([rows,data]) => {
-                // rows.forEach((item) => {
-                // Post.checkLikePost(item.postId,req.session.userId)
-                //     .then(([row, dataField]) => {
-                //         console.log(row);
-                //     })
-                    // .then(new_item => {
-                    //     console.log.apply('=====>>',new_item);
-                    //     new_item = build.timeline(new_item);
-                    //     let buildData = '' 
-                    //     rows.forEach((item) => {
-                    //         buildData += item;
-                    //     });
-                    //     res.send(rows.length 
-                    //         ? buildData 
-                    //         : 'nodata');   
-                    // })
-                    // .catch((error)=>console.error(error))       
-            rows.forEach( async (item) => {
-                await Post.checkLikePost(item.postId, req.session.userId)
-                .then(([row,dataField]) => {
-                    if(row.length){
-                       item.alreadyLiked = 1;
-                       new_item.push(item); 
-                    }
-                    else new_item.push(item);
-                }).then()
-            });
-            console.log('new_item', new_item);
-            buildData = build.timeline(rows);
-            return buildData;
-        })
-        .then((data) => {
-            Post.checkLikePost(item.postId)
-        })
+                let new_item = []; 
+                rows.forEach((item) => {
+                    new_item.push( 
+                    Post.checkLikePost(item.postId, req.session.userId)
+                    .then(([row,dataField]) => {
+                        if(row.length){
+                            item.alreadyLiked = 1
+                        }
+                        return item; 
+                    }));
+                });
+                Promise.all(new_item)
+                    .then((item) => {
+                        buildData = build.timeline(item); 
+                        return buildData;
+                    })
+                    .then(data => res.send(data))
+                    .catch(err=> console.error(err));
+                })
         .catch( error => {
             console.error(error)
         });
