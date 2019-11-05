@@ -107,7 +107,7 @@ const writePost = function(){
   let data = new FormData(); 
   // data.append('postImage', files);
   data.append('image', files);
-  data.append('posts', $('#postInput').text());
+  data.append('posts', $('#postInput')[0].value);
   $.ajax({
     method: "POST",
     url: '/post/timeline/writepost',

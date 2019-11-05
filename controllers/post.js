@@ -41,6 +41,7 @@ exports.getPosts = (req,res,next) => {
     // get contents from table posts
     Post.getPosts(limit,start)
         .then(([rows,data]) => {
+            
                 let new_item = []; 
                 rows.forEach((item) => {
                     new_item.push( 
@@ -54,6 +55,7 @@ exports.getPosts = (req,res,next) => {
                 });
                 Promise.all(new_item)
                     .then((item) => {
+                        console.log('==========>',item)
                         buildData = build.timeline(item); 
                         return buildData;
                     })
@@ -71,17 +73,17 @@ exports.getBoard = (req,res,next) => {
 exports.getBoardPosts = (req,res,next) => {
 }
 exports.writePost = (req,res,next)=> {
-    const image= req.file.filename;
-    console.log('req json', JSON.parse(req.body));
+    console.log('req.body => ', req.body);
+    let image = null;
+    console.log(req.file); 
+    if(req.file) image = req.file.filename; 
     const userId = req.session.userId;
     const posts = req.body.posts;
-    console.log(JSON.stringify(req.body));
+    console.log('image:',image);
     Post.writePost(userId,image, posts, 'write')
         .then(res.send('success'))
         .catch(err => console.error(err));
-    if(!image){
-        res.send('type_error'); 
-    }
+    
 
 }
 
