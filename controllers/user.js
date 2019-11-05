@@ -140,3 +140,7 @@ exports.postMyImage = (req,res,next) => {
 exports.postMyPassword = (req,res,next) => {
     res.send('success');
 }
+
+exports.getApply = (req,res,next) => {
+    res.render('user/apply');
+}

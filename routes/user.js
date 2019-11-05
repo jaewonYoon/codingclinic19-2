@@ -19,4 +19,8 @@ router.get('/mypage', userController.getMyPage);
 // user/mypage => POST
 router.post('/mypage/changeImage', userController.postMyImage);
 router.post('/mypage/changePassword', userController.postMyPassword);
+
+// user/apply => GET
+router.get('/apply', userController.getApply);
+
 module.exports = router;

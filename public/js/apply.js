@@ -93,7 +93,7 @@ function calbmr(){
       age = $('.age-input')[0].value;
       gender = $('input[type=radio][name=gender]:checked');
       pattern = $('input[type=radio][name=pattern]:checked');
-
+      console.log(height,weight,age,gender[0],pattern[0]);
       if(height && weight && age && Number.isInteger(+height) && Number.isInteger(+weight) && Number.isInteger(+age)
         && gender[0] && pattern[0]){
           patternValue = pattern[0].id;

@@ -1,0 +1,67 @@
+extends ../includes/header.pug
+block contents
+    script.
+        $(document).ready(
+            function(){
+                genderClick();
+                calbmr();
+            }
+        );
+    section.apply
+        article.apply-form
+            h3.medium 선수등록
+            .step-indicator.medium
+                .step-indicator-text step1
+            article.select-form
+                h2.medium.select-title 나이
+                .select-box
+                    input.age-input.validate(placeholder="플레이어님 나이를 적어주세요.") 
+            article.select-form
+                h2.medium.select-title 키(cm)
+                .select-box
+                    input.height-input.validate(placeholder="키") 
+            
+            article.select-form
+                h2.medium.select-title 몸무게(kg) 
+                .select-box
+                    input.weight-input.validate(placeholder="자신있게 적어볼까요? ")
+            article.select-form
+                h2.medium.select-title 성별 
+                .select-box
+                    input#male(type="radio", name="gender")
+                    input#female(type="radio", name="gender")
+                    label.gender-select#male-box(for="male", tabindex="1") 남자
+                    label.gender-select#female-box(for="female", tabindex="1") 여자 
+            article.pattern-container 
+                input#pattern1(type="radio", name="pattern")
+                input#pattern2(type="radio", name="pattern")
+                input#pattern3(type="radio", name="pattern")
+                input#pattern4(type="radio", name="pattern")
+                h2.medium 생활패턴 
+                .pattern-box
+                    div
+                        label(for="pattern1")
+                            img#step1(src="/img/step1.png", onclick="activeClick(this);")
+                        .light 매우 정적
+                    div
+                        label(for="pattern2")
+                            img#step2(src="/img/step2.png", onclick="activeClick(this);")
+                        .light 정적 
+                    div
+                        label(for="pattern3")
+                            img#step3(src="/img/step3.png", onclick="activeClick(this);")
+                        .light 일반
+                    div
+                        label(for="pattern4")
+                            img#step4(src="/img/step4.png", onclick="activeClick(this);")
+                        .light 매우 활동적 
+            article.select-form
+                h2.medium.select-title 기초대사량 
+                .select-box
+                    span.bmr kcal
+            article.select-form
+                h2.medium.select-title 활동대사/권장칼로리 
+                .select-box
+                    span.kcal kcal
+            button.btn-success(onclick="validate();") 다음 단계로
+    script(src="/js/apply.js")   
