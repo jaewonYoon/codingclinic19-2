@@ -39,46 +39,22 @@ exports.getPosts = (req,res,next) => {
     let limit = req.body.limit;
     let start = req.body.start;
     // get contents from table posts
-    let new_item =[];
-    Post.getPosts(limit,start)
-        .then(([rows,data]) => {
-                // rows.forEach((item) => {
-                // Post.checkLikePost(item.postId,req.session.userId)
-                //     .then(([row, dataField]) => {
-                //         console.log(row);
-                //     })
-                    // .then(new_item => {
-                    //     console.log.apply('=====>>',new_item);
-                    //     new_item = build.timeline(new_item);
-                    //     let buildData = '' 
-                    //     rows.forEach((item) => {
-                    //         buildData += item;
-                    //     });
-                    //     res.send(rows.length 
-                    //         ? buildData 
-                    //         : 'nodata');   
-                    // })
-                    // .catch((error)=>console.error(error))       
-            rows.forEach( async (item) => {
-                await Post.checkLikePost(item.postId, req.session.userId)
+    let new_item ='';
+    let rows = Post.getPosts(limit,start)
+        .then(async ([rows,data]) => {
+            return await rows.forEach( (item) => {
+                Post.checkLikePost(item.postId, req.session.userId)
                 .then(([row,dataField]) => {
+                    console.log('row', row);
                     if(row.length){
                        item.alreadyLiked = 1;
-                       new_item.push(item); 
                     }
-                    else new_item.push(item);
-                }).then()
+                })
             });
-            console.log('new_item', new_item);
-            buildData = build.timeline(rows);
-            return buildData;
+        }).then(rows => {
+            console.log( ' +=======================>',rows);
         })
-        .then((data) => {
-            Post.checkLikePost(item.postId)
-        })
-        .catch( error => {
-            console.error(error)
-        });
+        
 
 }
 exports.getBoard = (req,res,next) => {
