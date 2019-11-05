@@ -39,22 +39,30 @@ exports.getPosts = (req,res,next) => {
     let limit = req.body.limit;
     let start = req.body.start;
     // get contents from table posts
-    let new_item ='';
-    let rows = Post.getPosts(limit,start)
-        .then(async ([rows,data]) => {
-            return await rows.forEach( (item) => {
-                Post.checkLikePost(item.postId, req.session.userId)
-                .then(([row,dataField]) => {
-                    console.log('row', row);
-                    if(row.length){
-                       item.alreadyLiked = 1;
-                    }
+    Post.getPosts(limit,start)
+        .then(([rows,data]) => {
+                let new_item = []; 
+                rows.forEach((item) => {
+                    new_item.push( 
+                    Post.checkLikePost(item.postId, req.session.userId)
+                    .then(([row,dataField]) => {
+                        if(row.length){
+                            item.alreadyLiked = 1
+                        }
+                        return item; 
+                    }));
+                });
+                Promise.all(new_item)
+                    .then((item) => {
+                        buildData = build.timeline(item); 
+                        return buildData;
+                    })
+                    .then(data => res.send(data))
+                    .catch(err=> console.error(err));
                 })
-            });
-        }).then(rows => {
-            console.log( ' +=======================>',rows);
-        })
-        
+        .catch( error => {
+            console.error(error)
+        });
 
 }
 exports.getBoard = (req,res,next) => {

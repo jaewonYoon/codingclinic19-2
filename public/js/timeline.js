@@ -53,9 +53,13 @@ function likeClick(e){
     if(e.target.classList.contains('far')){ 
         // 아직 좋아요를 누르지 않았을 때 
         $(e.target).removeClass('far').addClass('fas');
+        let like_counts = $(e.target).next().text();
+        $(e.target).next().text(parseInt(like_counts)+1);
         likes(postId,'add');
     }else{
       $(e.target).removeClass('fas').addClass('far');
+      let like_counts = $(e.target).next().text();
+      $(e.target).next().text(parseInt(like_counts)-1);
       likes(postId,'minus');
     }
 } 

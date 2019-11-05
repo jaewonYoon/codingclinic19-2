@@ -1,5 +1,4 @@
 const db = require('../util/database');
-
 module.exports = class Post{
     static getPosts(limit, start){
       return db.db.execute(`
@@ -21,6 +20,15 @@ module.exports = class Post{
       where postId='${postId}' and userId = '${userId}'
     `)
   }
+  // static checkLikePost = function(postId, userId, posts){
+  //   let deferred = q.defer(); 
+  //   db.pool.query(`select * from posts_likes where postId='${postId} and userId='${userId}`,
+  //         function(err,tags,field){
+  //           posts.tags = tags;
+  //           deferred.resolve();
+  //         });
+  //   return deferred.promise;
+  // }
   static likePost(postId,userId){
     return db.db.execute(`
       INSERT INTO 
@@ -51,4 +59,5 @@ module.exports = class Post{
         })
     }
   }
+
 }
