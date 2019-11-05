@@ -53,6 +53,7 @@ function likeClick(e){
     if(e.target.classList.contains('far')){ 
         // 아직 좋아요를 누르지 않았을 때 
         $(e.target).removeClass('far').addClass('fas');
+        console.log($(e.target).closest('.icon-box').find('.like_counts')); 
         likes(postId,'add');
     }else{
       $(e.target).removeClass('fas').addClass('far');
