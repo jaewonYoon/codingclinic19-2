@@ -144,3 +144,6 @@ exports.postMyPassword = (req,res,next) => {
 exports.getApply = (req,res,next) => {
     res.render('user/apply');
 }
+exports.postApply = (req,res,next) => {
+    // User.
+}

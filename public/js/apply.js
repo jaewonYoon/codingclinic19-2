@@ -22,37 +22,25 @@ function validate(){
   weight = inputArray[1].value;
   const age = document.querySelector('.age-input').value;
   const activity = document.querySelector('input[type=radio][name=pattern]:checked').id;
-  $.ajax({
-    method: "POST",
-    url: '/cc/include/check_apply.php',
-    data:{
-      type: 'apply1',
-      age: age,
-      height: height,
-      weight: weight,
-      gender: gender,
-      activity: activity,
-      bmr: bmr,
-      kcal: kcal
-    },
-    beforeSend:function(){
-      $('.loader').css('display','block');
-      $('.loader-cover').css('display','block');
-    },
-    complete:function(){
-      $('.loader').css('display','none');
-      $('.loader-cover').css('display','none');
-    },
-    success:function(data){
-      if(data === 'success'){
-        location.href="/cc/pages/apply2.php";
-      } else if(data ==='post_error'){
-        console.log('apply1 포스트 타입을 받지 못했습니다.');
-      } else {
-        console.log(data);
+  makeModal();
+}
+function makeModal(){ 
+  $('.applyModal').css('opacity',1)
+    .css('width', '70%')
+    .css('height', '300px');
+  $('.loader-cover').css('display','block');
+}
+function deleteModal() {
+  if($('.applyModal').css('opacity')){
+    $(document).on('click', function(e){
+      if($(e.target).hasClass('loader-cover')){
+        $('.applyModal').css('opacity', 0)
+        .css('width','0px')
+        .css('height', '0px');
+        $('.loader-cover').css('display','none');
       }
-    }
-  })
+    })
+  }
 }
 function genderClick(){
   const $male = $('#male-box');
@@ -129,4 +117,38 @@ function calbmr(){
       }
   });
 
+}
+
+function makeGoal(){
+  $.ajax({
+    method: "POST",
+    url: '/',
+    data:{
+      type: 'apply1',
+      age: age,
+      height: height,
+      weight: weight,
+      gender: gender,
+      activity: activity,
+      bmr: bmr,
+      kcal: kcal
+    },
+    beforeSend:function(){
+      $('.loader').css('display','block');
+      $('.loader-cover').css('display','block');
+    },
+    complete:function(){
+      $('.loader').css('display','none');
+      $('.loader-cover').css('display','none');
+    },
+    success:function(data){
+      if(data === 'success'){
+        location.href="/cc/pages/apply2.php";
+      } else if(data ==='post_error'){
+        console.log('apply1 포스트 타입을 받지 못했습니다.');
+      } else {
+        console.log(data);
+      }
+    }
+  })
 }
