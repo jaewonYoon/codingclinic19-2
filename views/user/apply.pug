@@ -64,23 +64,25 @@ block contents
                 h2.medium.select-title 활동대사/권장칼로리 
                 .select-box
                     span.kcal kcal
-            button.btn-success(onclick="validate();") 다음 단계로
+                    //- validate();
+            button.btn-success(onclick="makeModal('male');") 다음 단계로
             .applyModal
                 p
                     span.title 나이
                     span.value#modalAge 26
                 p
                     span.title 키 
-                    span.value#modalAge 181 cm
+                    span.value#modalHeight 181 cm
                 p
                     span.title 몸무게
-                    span.value#modalAge 72 kg 
+                    span.value#modalWeight 72 kg 
                 p
                     span.title 성별
-                    span.value#gender 남자
+                    span.value#modalGender 남자
                 p 
                     span  위 사항을 확인했습니다.  
                     input(type="checkbox", name='check')
-                span.warning 인적 사항을 잘못 입력할 시 수정할 수 없습니다!
-                
+                p
+                    span.warning 인적 사항을 잘못 입력할 시 수정할 수 없습니다!
+                    span.apply_button(onclick="makeGoal();") 입력
     script(src="/js/apply.js")   

@@ -1,35 +1,61 @@
 function validate(){
+  let flag = 1; 
   const inputArray = $('.validate');
   let male = $('#male')[0].checked;
   let female = $('#female')[0].checked;
   let gender;
   let height, weight;
   let bmr, kcal;
-  inputArray.map((_,item) => {
+  $.each(inputArray, (_,item) => {
     if(item.value.length ===0){
         alert('빈칸이 있으면 안됩니다.');
+        flag = 0;
         return false;
       }
     else if(isNaN(item.value)){
       alert("숫자로 써주세요 :) ");
+      flag = 0;
       return false;
     }
   });
-  male ? gender = 'male' : female ? gender = 'female': alert('성별을 선택해주세요.');
+  if( (male || female) === false ){
+    flag = 0;
+    alert('성별을 선택해주세요.');
+    return false;
+  }
+  male ? gender = 'male' : gender = 'female';
+
   bmr = parseInt($('.bmr').text());
   kcal = parseInt($('.kcal').text());
   height = inputArray[0].value;
   weight = inputArray[1].value;
   const age = document.querySelector('.age-input').value;
-  const activity = document.querySelector('input[type=radio][name=pattern]:checked').id;
-  makeModal();
+  const activityCheck = document.querySelector('input[type=radio][name=pattern]:checked');
+  if(!activityCheck){
+    alert('생활패턴을 선택해주세요.');
+    flag = 0; 
+    return false;
+  }
+  else {
+    activity = activityCheck.id; 
+  }
+  if(flag){
+    makeModal(gender);
+  }
 }
-function makeModal(){ 
+function makeModal(gender){ 
+  gender === 'male' ? gender = '남자' : '여자'; 
+  $('#modalAge').text($('.age-input')[0].value);
+  $('#modalHeight').text($('.height-input')[0].value);
+  $('#modalWeight').text($('.weight-input')[0].value);
+  $('#modalGender').text(gender);
   $('.applyModal').css('opacity',1)
     .css('width', '70%')
     .css('height', '300px');
   $('.loader-cover').css('display','block');
+  
 }
+
 function deleteModal() {
   if($('.applyModal').css('opacity')){
     $(document).on('click', function(e){
@@ -74,18 +100,15 @@ function calbmr(){
   let gender, pattern;
   let bmr, cal;
   let patternMul;
-  //input[type=radio]
   $('input').on('input',function(){
       height = $('.height-input')[0].value;
       weight = $('.weight-input')[0].value;
       age = $('.age-input')[0].value;
       gender = $('input[type=radio][name=gender]:checked');
       pattern = $('input[type=radio][name=pattern]:checked');
-      console.log(height,weight,age,gender[0],pattern[0]);
       if(height && weight && age && Number.isInteger(+height) && Number.isInteger(+weight) && Number.isInteger(+age)
         && gender[0] && pattern[0]){
           patternValue = pattern[0].id;
-          console.log(patternValue);
           switch(patternValue){
             case 'pattern1':
               patternMul = 1.2;
@@ -111,7 +134,6 @@ function calbmr(){
             alert('성별이 선택되지 않았습니다.');
           }
           cal = bmr * patternMul;
-          console.log(patternMul);
           $('span.bmr').text(Math.round(bmr));
           $('span.kcal').text(Math.round(cal));
       }
@@ -120,18 +142,31 @@ function calbmr(){
 }
 
 function makeGoal(){
+
+  let age = parseInt($('.age-input')[0].value);
+  let height = parseInt($('.height-input')[0].value);
+  let weight = parseInt($('.weight-input')[0].value);
+  let activity = parseInt($('input[type=radio][name=pattern]:checked')[0].id[7]);
+  let bmr = parseInt($('.bmr').text());
+  let gender;
+  $('#male')[0].checked ? gender = 'male' : gender = 'female';
+  let kcal = parseInt($('.kcal').text());
+  if($('input[name=check]')[0].checked === false){
+    alert('확인란에 체크를 해주세요 :) ');
+    return false;
+  }
   $.ajax({
     method: "POST",
-    url: '/',
+    url: '/user/apply',
     data:{
-      type: 'apply1',
       age: age,
       height: height,
       weight: weight,
       gender: gender,
       activity: activity,
       bmr: bmr,
-      kcal: kcal
+      kcal: kcal,
+      process: 1 
     },
     beforeSend:function(){
       $('.loader').css('display','block');
@@ -140,6 +175,9 @@ function makeGoal(){
     complete:function(){
       $('.loader').css('display','none');
       $('.loader-cover').css('display','none');
+      $('.applyModal').css('opacity', 0)
+        .css('width','0px')
+        .css('height', '0px');s
     },
     success:function(data){
       if(data === 'success'){

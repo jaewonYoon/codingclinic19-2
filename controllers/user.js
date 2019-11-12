@@ -78,7 +78,6 @@ exports.postSignUp = (req,res,next) => {
         });
     User.fetchNick(nick).
         then(([rows,fieldData]) => {
-            console.log(rows[0].count)
             if(rows[0].count){
                 res.send('duplicate_nick');
             }
@@ -124,7 +123,6 @@ exports.postMyImage = (req,res,next) => {
     if(!image){
         res.send('type_error'); 
     }
-    // const imageUrl = split.transUrl('publicimages', image.path, '/images');
 
     User.createImage(req.session.userId, image.filename)
         .then(() => {
@@ -142,8 +140,16 @@ exports.postMyPassword = (req,res,next) => {
 }
 
 exports.getApply = (req,res,next) => {
+    
     res.render('user/apply');
 }
 exports.postApply = (req,res,next) => {
-    // User.
+    
+    const {age, height, weight, kcal, bmr, gender, activity,process} = req.body; 
+    const userId = req.session.userId; 
+    User.fetchGoal(userId, age,height, weight, kcal, bmr, gender, activity,process)
+        .then(([rows,dataArray]) => {
+            console.log(rows);
+            res.send('success'); 
+        })
 }

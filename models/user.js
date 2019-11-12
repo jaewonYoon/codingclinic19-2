@@ -34,5 +34,10 @@ module.exports = class User{
     static fetchImage(userId){
         return db.db.execute(`SELECT Image from user where userId='${userId}' `);
     }
+    static fetchGoal(userId, age, height, weight ,kcal, bmr, gender, activity, process){
+        return db.db.execute(`INSERT INTO goal(userId, age, height ,weight, kcal, bmr, gender, activity, process)
+        values ('${userId}', '${age}', '${height}', '${weight}', '${kcal}', '${bmr}', '${gender}', '${activity}', '${process}')
+        `);
+    }
 }
 

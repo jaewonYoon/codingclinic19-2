@@ -208,3 +208,13 @@ article.apply-form .btn-success{
 .applyModal > span.warning{
   color: #BE3939
 }
+.apply_button{
+  color: #ffffff;
+  display:flex;
+  align-items: center;
+  cursor: pointer;
+  background-color:#007bff;
+  width: 50px; 
+  height: 30px;
+  padding: 10px; 
+}
