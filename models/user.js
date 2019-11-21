@@ -39,5 +39,9 @@ module.exports = class User{
         values ('${userId}', '${age}', '${height}', '${weight}', '${kcal}', '${bmr}', '${gender}', '${activity}', '${process}')
         `);
     }
+    static getProcess(userId){
+        return db.db.execute(`SELECT process from goal where userId='${userId}'`);
+        
+    }
 }
 
