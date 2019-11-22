@@ -24,4 +24,10 @@ router.post('/mypage/changePassword', userController.postMyPassword);
 router.get('/apply', userController.getApply);
 // user/apply => POST
 router.post('/apply',userController.postApply);
+// user/apply2 => POST
+router.post('/apply2',userController.postApply2);
+
+
+
+
 module.exports = router;

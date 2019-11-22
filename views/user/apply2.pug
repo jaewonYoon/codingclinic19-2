@@ -1,7 +1,9 @@
 extends ../includes/header.pug
 block contents
     script.
-        
+        $(document).ready(function(){
+            periodClick(); 
+        })
     section.apply
         article.period-box
             
@@ -13,4 +15,28 @@ block contents
                 .step-indicator-text step2 
             article.select-form
                 h2.medium.select-title
-                
+            article.select-form
+                h2.medium.select-title 목표 몸무게 
+                .select-box
+                    input.target-weight.validate(placeholder="천릿길도 한걸음 부터!")
+                    |   kg
+            article.select-form
+                h2.medium.select-title 목표 체지방률
+                .select-box
+                    input.target-fat-rate.validate(placeholder="체지방률")
+                    |   % 
+            article.select-form
+                h2.medium.select-title.diet-title 다이어트 기간(나의 성향)
+                .select-box.diet-box
+                    input#short(type="radio", name="target-period")
+                    input#long(type="radio", name="target-period")                
+                    .period-box#short-box
+                        label.period-label(for="short", tabindex="1")
+                            img(src="/img/short.png")
+                        .period-description.medium 단거리 선수
+                    .period-box#long-box
+                        label.period-label(for="long", tabindex="1")
+                            img(src="/img/long.png")
+                        .period-description.medium 장거리 선수
+            button.btn-success(onclick="validate()") 다음 단계로 
+    script(src="/js/apply2.js")

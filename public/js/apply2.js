@@ -14,16 +14,16 @@ function validate(){
     alert('나의 다이어트 기간을 정해주세요 :)');
     return false;
   }
-  short ? peroid = 'short' : long ? period = 'long': alert('목표 기간을 설정해주세요.');
+  short ? period = 1 : long ? period = 2: alert('목표 기간을 설정해주세요.');
   target_weight = inputArray[0].value;
   target_fat = inputArray[1].value;
   $.ajax({
     method: "POST",
-    url: '/cc/include/check_apply.php',
+    url: '/user/apply2',
     data:{
       type: 'apply2',
-      target_weight: target_weight,
-      target_fat: target_fat,
+      goalWeight: target_weight,
+      goalFatRate: target_fat,
       period: period,
     },
     beforeSend:function(){

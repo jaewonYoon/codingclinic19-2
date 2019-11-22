@@ -143,7 +143,7 @@ exports.getApply = (req,res,next) => {
     User.getProcess(req.session.userId)
         .then(([rows,dataField]) => {
             const processRow = rows[0];
-            if(processRow.process === 3){
+            if(processRow.process === 2){
                 res.redirect('/');
                 return ;
             }      
@@ -168,4 +168,17 @@ exports.postApply = (req,res,next) => {
             console.log(rows);
             res.send('success'); 
         })
+}
+
+exports.postApply2 = (req,res,next) => {
+    console.log(req.body); 
+    const userId=req.session.userId; 
+    const {goalWeight, goalFatRate, period} = req.body; 
+    User.applyGoal(userId,goalWeight, goalFatRate, period,2)
+        .then(() => {
+            res.send('success');
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 }
