@@ -41,7 +41,6 @@ exports.getPosts = (req,res,next) => {
     // get contents from table posts
     Post.getPosts(limit,start)
         .then(([rows,data]) => {
-            
                 let new_item = []; 
                 rows.forEach((item) => {
                     new_item.push( 

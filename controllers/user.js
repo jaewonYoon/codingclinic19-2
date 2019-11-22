@@ -141,25 +141,24 @@ exports.postMyPassword = (req,res,next) => {
 
 exports.getApply = (req,res,next) => {
     User.getProcess(req.session.userId)
-        .then(([rows, dataField]) => {
-            const processRow = rows;
-            if(Array.isArray(processRow)){
-                console.log('processRow: ',processRow.process)
-                if(processRow.process === 3)
-                    res.redirect('/');
-                else if( processRow.process === 1){
-                    res.render('user/apply2');
-                }
-                else
-                    res.render('user/apply')
-            } else{
-                console.error('process Row is not a array Type');
+        .then(([rows,dataField]) => {
+            const processRow = rows[0];
+            if(processRow.process === 3){
+                res.redirect('/');
+                return ;
+            }      
+            else if( processRow.process === 1){
+                console.log(processRow.process);
+                res.render('user/apply2');
             }
+            else
+                res.render('user/apply')
+            
         })
         .catch(error => {
             console.error(error)
         })
-    res.render('user/apply');
+    
 }
 exports.postApply = (req,res,next) => {
     const {age, height, weight, kcal, bmr, gender, activity,process} = req.body; 

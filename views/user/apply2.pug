@@ -1,14 +1,16 @@
 extends ../includes/header.pug
 block contents
     script.
-        $(document).ready(
-            function(){
-                genderClick();
-                calbmr();
-                deleteModal();
-            }
-        );
+        
     section.apply
         article.period-box
             
     script(src="/js/apply.js")   
+    section.apply
+        article.apply-form
+            h3.medium 목표 설정
+            .step-indicator.medium
+                .step-indicator-text step2 
+            article.select-form
+                h2.medium.select-title
+                
