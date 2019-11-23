@@ -181,7 +181,7 @@ function makeGoal(){
     },
     success:function(data){
       if(data === 'success'){
-        location.href="/cc/pages/apply2.php";
+        location.href="/user/apply2";
       } else if(data ==='post_error'){
         console.log('apply1 포스트 타입을 받지 못했습니다.');
       } else {

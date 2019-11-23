@@ -22,6 +22,8 @@ router.post('/mypage/changePassword', userController.postMyPassword);
 
 // user/apply => GET
 router.get('/apply', userController.getApply);
+// user/apply2 => GET
+router.get('/apply2', userController.getApply);
 // user/apply => POST
 router.post('/apply',userController.postApply);
 // user/apply2 => POST

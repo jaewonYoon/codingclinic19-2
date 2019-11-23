@@ -143,7 +143,10 @@ exports.getApply = (req,res,next) => {
     User.getProcess(req.session.userId)
         .then(([rows,dataField]) => {
             const processRow = rows[0];
-            if(processRow.process === 2){
+            if(processRow ===undefined){
+                res.render('user/apply');
+            }
+            else if(processRow.process === 2){
                 res.render('user/process')
                 return ;
             }      
@@ -151,8 +154,7 @@ exports.getApply = (req,res,next) => {
                 console.log(processRow.process);
                 res.render('user/apply2');
             }
-            else
-                res.render('user/apply')
+            
             
         })
         .catch(error => {
