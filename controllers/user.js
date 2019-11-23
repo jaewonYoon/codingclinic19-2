@@ -147,7 +147,7 @@ exports.getApply = (req,res,next) => {
                 res.render('user/apply');
             }
             else if(processRow.process === 2){
-                res.render('user/process')
+                res.redirect('process')
                 return ;
             }      
             else if( processRow.process === 1){
@@ -186,7 +186,30 @@ exports.postApply2 = (req,res,next) => {
 }
 
 exports.getProcess = (req,res,next) => {
-    res.render('user/process');
+    const userId = req.session.userId;
+    //30, 180
+    
+    res.render('user/process')
+}
+exports.getGraph = (req,res,next) =>{
+    const userId = req.session.userId;
+    User.getGoal(userId)
+        .then(([rows, dataArray]) => {
+            const {goalWeight, goalFatRate, period, weight,kcal,gender} = rows[0];
+            const loseWeight = weight - goalWeight;
+            const totalCal = loseWeight * 7* 1000;
+            let perDay; 
+            period === 1 ? perDay = totalCal / 30 : perDay = totalCal / 180;
+            var data = {
+                perDay,
+                goalWeight,
+                kcal,
+                gender,
+                type: 'success'
+            }
+            console.log(data);
+            res.send({data});
+        })
 }
 
 exports.postProcess = (req,res,next) => {

@@ -885,6 +885,38 @@ var r=function(t){return t},i=function(t){return Math.pow(t,2)},u=function(t){re
 },{}],10:[function(require,module,exports){
 var ProgressBar = require('progressbar.js');
 
+const heartWriter = () => {
+  var heart = new ProgressBar.Path('#heart-path', {
+    easing: 'easeInOut',
+    duration: 3000
+  });
+
+  heart.set(0);
+  heart.animate(1.0);  // Number from 0.0 to 1.0
+}
+const calProcess = () => {
+  $.ajax({
+    method: 'GET',
+    url: 'getGraph',
+    beforeSend:function(){
+      $('.loader-heart').css('display','block');
+      $('.loader-cover').css('display','block');
+      heartWriter()
+    },
+    complete:function(){
+      $('.loader-heart').css('display','none');
+      $('.loader-cover').css('display','none');
+    },
+    success:function(data){
+      if(data){
+        perDayWriter(10) 
+      }else {
+        console.log(data);
+      }
+    }
+  })
+}
+const perDayWriter = value => {
 var bar = new ProgressBar.SemiCircle(container, {
   strokeWidth: 6,
   color: '#FFEA82',
@@ -902,7 +934,7 @@ var bar = new ProgressBar.SemiCircle(container, {
   // Set default step function for all animate calls
   step: (state, bar) => {
     bar.path.setAttribute('stroke', state.color);
-    var value = Math.round(bar.value() * 100);
+    var value = `${Math.round(bar.value() * 100)}`;
     if (value === 0) {
       bar.setText('');
     } else {
@@ -916,4 +948,9 @@ bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
 bar.text.style.fontSize = '2rem';
 
 bar.animate(0.5);  // Number from 0.0 to 1.0
+
+}
+
+calProcess();
+
 },{"progressbar.js":3}]},{},[10]);

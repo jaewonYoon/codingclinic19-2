@@ -2,4 +2,17 @@
     margin: 20px;
     width: 200px;
     height: 200px;
+}
+.apply-form .medium.my-record{
+    float:left;
+}
+.apply-form .medium.right{
+    float:right;
+    color: #17a2b8;
+}
+
+#heart-container {
+    top: 30%;
+    margin: 20% auto;
+    width: 25%;
   }

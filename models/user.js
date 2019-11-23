@@ -43,12 +43,13 @@ module.exports = class User{
         return db.db.execute(`SELECT process from goal where userId='${userId}'`);
     }
     static getGoal(userId){
-        return db.db.execute(`SELECT goalWeight, goalFatRate, period from goal where userId='${userId}'`);  
+        return db.db.execute(`SELECT * from goal where userId='${userId}'`);  
     }
     static applyGoal(userId, goalWeight, goalFatRate, period, process){
         return db.db.execute(`update goal set goalWeight='${goalWeight}', goalFatRate='${goalFatRate}', period='${period}', process='${process}' where userId='${userId}'`);
     }
     static applyProcess(userId,process){
+
     }
 }
 
