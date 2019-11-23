@@ -3,10 +3,11 @@ block contents
     script.
         $(document).ready(function(){
             periodClick(); 
+            deleteModal();
         })
     section.apply
         article.period-box
-            
+    script(src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js")
     script(src="/js/apply.js")   
     section.apply
         article.apply-form
@@ -38,5 +39,15 @@ block contents
                         label.period-label(for="long", tabindex="1")
                             img(src="/img/long.png")
                         .period-description.medium 장거리 선수
-            button.btn-success(onclick="validate()") 다음 단계로 
+            button.btn-success(onclick="makeModal()") 다음 단계로
+        section.apply-modal
+            .description 예시) 
+            article.apply-form
+                .chart-box
+                    canvas#longChart
+                    canvas#shortChart
+                .chart-check-box 
+                    span.warning 인적 사항을 잘못 입력할 시 수정할 수 없습니다!
+                    span.apply_button(onclick="validate();") 확인
+    
     script(src="/js/apply2.js")

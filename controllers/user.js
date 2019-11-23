@@ -144,7 +144,7 @@ exports.getApply = (req,res,next) => {
         .then(([rows,dataField]) => {
             const processRow = rows[0];
             if(processRow.process === 2){
-                res.redirect('/');
+                res.render('user/apply2')
                 return ;
             }      
             else if( processRow.process === 1){

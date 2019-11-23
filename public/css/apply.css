@@ -80,7 +80,6 @@ article.pattern-container{
 article.pattern-container .pattern-box{
   margin-top: 50px;
   display: -ms-flexbox;
-  -ms-flexbox-wrap;
   -ms-flexbox-direction:column;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
@@ -118,7 +117,9 @@ article.apply-form .btn-success{
   border-radius:10px;
   float: right;
 }
-
+article.apply-form .btn-success{
+  float: right;
+}
 #male, #female{
   width: 0px;
   height: 0px;

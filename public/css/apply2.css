@@ -1,0 +1,57 @@
+.chart-box{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.chart-box canvas{
+    width: 400px ;
+    height: 400px ;
+}
+
+.apply-modal{
+    margin: 0 auto;
+    overflow:hidden;
+    z-index:500;
+    opacity: 0; 
+    padding: 23px 63px;
+    background-color: #ffffff;
+    width: 0px;
+    height: 0px;
+    position: fixed;
+    top:20%;
+    left:16%;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    transition: all 0.4s; 
+  }
+
+.apply-modal .description{
+    text-align:center;
+    width: 100%;
+}
+
+.apply_button{
+    color: #ffffff;
+    display:flex;
+    align-items: center;
+    cursor: pointer;
+    background-color:#007bff;
+    width: 50px; 
+    height: 30px;
+    padding: 10px; 
+  }
+
+.chart-check-box{
+    display:flex;
+    justify-content: center;
+}
+
+.chart-check-box .warning{
+    color: #e83e8c;
+    margin-right: 20px;
+}
+.chart-check-box .apply_button{
+    border-radius: 10px;
+}
