@@ -49,7 +49,7 @@ function validate(){
     },
     success:function(data){
       if(data === 'success'){
-        location.href="/cc/pages/apply3.php";
+        location.href="/user/process";
       } else if(data ==='post_error'){
         console.log('apply2 포스트 타입을 받지 못했습니다.');
       } else {

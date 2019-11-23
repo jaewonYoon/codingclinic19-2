@@ -144,7 +144,7 @@ exports.getApply = (req,res,next) => {
         .then(([rows,dataField]) => {
             const processRow = rows[0];
             if(processRow.process === 2){
-                res.render('user/apply2')
+                res.render('user/process')
                 return ;
             }      
             else if( processRow.process === 1){
@@ -181,4 +181,12 @@ exports.postApply2 = (req,res,next) => {
         .catch((error) => {
             console.error(error);
         });
+}
+
+exports.getProcess = (req,res,next) => {
+    res.render('user/process');
+}
+
+exports.postProcess = (req,res,next) => {
+    
 }

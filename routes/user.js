@@ -27,7 +27,9 @@ router.post('/apply',userController.postApply);
 // user/apply2 => POST
 router.post('/apply2',userController.postApply2);
 
-
-
+// user/process => GET
+router.get('/process', userController.getProcess);
+// user/process => POST
+router.post('/porcess',userController.postProcess); 
 
 module.exports = router;
