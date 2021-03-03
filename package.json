@@ -24,7 +24,7 @@
     "mysql2": "^1.7.0",
     "nodemon": "^1.19.4",
     "progressbar.js": "^1.1.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "q": "^1.5.1"
   },
   "repository": {
